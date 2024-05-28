@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "PeliculasActor";
+}
+
+@model List<Pelicula>
+
+<h1>Peliculas Actor</h1>
+<form method="post">
+    <label class="form-label">Introduce actor</label>
+    <input type="text" name="actor" class="form-control" />
+    <button class="btn btn-dark">Buscar</button>
+</form>
+
+@if (Model != null)
+{
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th>
+                    IdPelicula
+                </th>
+                <th>
+                    Genero
+                </th>
+                <th>
+                    Titulo
+                </th>
+                <th>
+                    Argumento
+                </th>
+                <th>
+                    Foto
+                </th>
+                <th>
+                    Actores
+                </th>
+                <th>
+                    Precio
+                </th>
+                <th>
+                    YouTube
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.IdPelicula
+                    </td>
+                    <td>
+                        @item.Genero
+                    </td>
+                    <td>
+                        @item.Titulo
+                    </td>
+                    <td>
+                        @item.Argumento
+                    </td>
+                    <td>
+                        <img src="~/images/@item.Foto" style="width:150px" />
+                    </td>
+                    <td>
+                        @item.Actores
+                    </td>
+                    <td>
+                        @item.Precio €
+                    </td>
+                    <td>
+                        @item.YouTube
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

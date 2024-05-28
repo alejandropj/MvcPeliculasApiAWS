@@ -1,0 +1,78 @@
+﻿@model IEnumerable<MvcPeliculasApiAWS.Models.Pelicula>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de peliculas</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-dark">Crear nueva</a>
+</p>
+<a asp-action="PeliculasActor">Filtrar películas por actor</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPelicula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Argumento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Actores)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YouTube)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPelicula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Argumento)
+            </td>
+            <td>
+                <img src="~/images/@Html.DisplayFor(modelItem => item.Foto)" style="width:150px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Actores)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio) €
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YouTube)
+            </td>
+            <td>
+                @Html.ActionLink("Actualizar", "Update", new { id=item.IdPelicula }) |
+                @Html.ActionLink("Detalles", "Details", new { id=item.IdPelicula  }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id=item.IdPelicula  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
