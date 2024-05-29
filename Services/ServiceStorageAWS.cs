@@ -1,5 +1,6 @@
 ﻿using Amazon.S3;
 using Amazon.S3.Model;
+using MvcPeliculasApiAWS.Models;
 
 namespace MvcPeliculasApiAWS.Services
 {
@@ -8,11 +9,18 @@ namespace MvcPeliculasApiAWS.Services
         private IAmazonS3 client;
         private string BucketName;
 
-        public ServiceStorageAWS
+/*        public ServiceStorageAWS
             (IConfiguration configuration, IAmazonS3 client)
         {
             this.BucketName =
                 configuration.GetValue<string>("AWS:S3BucketName");
+            this.client = client;
+        }     */   
+        public ServiceStorageAWS
+            (KeysModel keys, IAmazonS3 client)
+        {
+            this.BucketName =
+                keys.BucketName;
             this.client = client;
         }
 

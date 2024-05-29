@@ -9,10 +9,17 @@ namespace MvcPeliculasApiAWS.Services
         private string UrlApi;
         private MediaTypeWithQualityHeaderValue header;
 
-        public ServiceApiPeliculas(IConfiguration configuration)
-        {
+        /* public ServiceApiPeliculas(IConfiguration configuration)
+           {
             this.UrlApi = configuration.GetValue<string>
                 ("ApiUrls:ApiPeliculasAWS");
+            this.header = new MediaTypeWithQualityHeaderValue
+                ("application/json");
+            }*/
+
+        public ServiceApiPeliculas(KeysModel keys)
+        {
+            this.UrlApi = keys.ApiPeliculas;
             this.header = new MediaTypeWithQualityHeaderValue
                 ("application/json");
         }

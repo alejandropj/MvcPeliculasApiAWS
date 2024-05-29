@@ -2,7 +2,8 @@
 
 @{
     ViewData["Title"] = "Details";
-    string UrlBucket = configuration.GetValue<string>("AWS:S3BucketUrl");
+    //string UrlBucket = configuration.GetValue<string>("AWS:S3BucketUrl");
+    string UrlBucket = keysModel.BucketUrl;
 }
 
 <h1>Detalle de pelicula</h1>
