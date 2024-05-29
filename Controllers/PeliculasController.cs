@@ -7,9 +7,11 @@ namespace MvcPeliculasApiAWS.Controllers
     public class PeliculasController : Controller
     {
         private ServiceApiPeliculas service;
-        public PeliculasController(ServiceApiPeliculas service)
+        private ServiceStorageAWS serviceStorage;
+        public PeliculasController(ServiceApiPeliculas service, ServiceStorageAWS serviceStorage)
         {
             this.service = service;
+            this.serviceStorage = serviceStorage;
         }
 
 
@@ -38,8 +40,16 @@ namespace MvcPeliculasApiAWS.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(Pelicula peli)
+        public async Task<IActionResult> Create
+            (Pelicula peli, IFormFile file)
         {
+            peli.Foto = file.FileName;
+
+            using(Stream stream = file.OpenReadStream())
+            {
+                await this.serviceStorage.UploadFileAsync(file.FileName, stream);
+            }
+
             await this.service.CreatePeliculaAsync(peli);
             return RedirectToAction("Index");
         }

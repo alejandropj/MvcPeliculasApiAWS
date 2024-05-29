@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "PeliculasActor";
+    string UrlBucket = configuration.GetValue<string>("AWS:S3BucketUrl");
 }
 
 @model List<Pelicula>
@@ -59,7 +60,7 @@
                         @item.Argumento
                     </td>
                     <td>
-                        <img src="https://bucket-peliculas-apj.s3.amazonaws.com/@item.Foto" style="width:150px" />
+                        <img src="@UrlBucket@item.Foto" style="width:150px" />
                     </td>
                     <td>
                         @item.Actores

@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    string UrlBucket = configuration.GetValue<string>("AWS:S3BucketUrl");
 }
 
 <h1>Lista de peliculas</h1>
@@ -56,7 +57,7 @@
                 @Html.DisplayFor(modelItem => item.Argumento)
             </td>
             <td>
-                <img src="https://bucket-peliculas-apj.s3.amazonaws.com/@Html.DisplayFor(modelItem => item.Foto)" style="width:150px" />
+                <img src="@UrlBucket@Html.DisplayFor(modelItem => item.Foto)" style="width:150px" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Actores)
